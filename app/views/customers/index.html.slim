@@ -1,0 +1,26 @@
+.page-header
+  h2
+    ' Customers
+    small Make changes to existing customers or view their profiles
+
+= form_tag search_customers_path, method: :get, class: 'form-inline' do
+  .form-group
+    = text_field_tag 'query', params[:query], class: 'form-control', placeholder: 'Email or Phone'
+  = submit_tag 'Search', class: 'btn btn-primary'
+
+table.table
+  thead
+    tr
+      th.col-md-4 Name
+      th.col-md-3 Email
+      th.col-md-3 Phone
+      th.col-md-2 Actions
+  tbody
+    - @customers.each do |customer|
+      tr
+        td = customer.full_name
+        td = customer.email
+        td = customer.phone
+        td
+          => link_to 'View', customer_path(customer), class: 'btn btn-default btn-xs'
+          = link_to 'Delete', customer_gifts_path(customer), method: :delete, class: 'btn btn-danger btn-xs'

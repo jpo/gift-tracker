@@ -1,0 +1,25 @@
+.page-header
+  .pull-right
+    => link_to 'Cancel', customer_path(@customer), class: 'btn btn-default'
+    = link_to 'Back to Customers', customers_path, class: 'btn btn-default'
+
+  h2 = @customer.full_name
+
+= form_for @customer do |form|
+  #customer-show-view
+    table.table.table-bordered
+      tr
+        td.col-md-1 First Name
+        td.col-md-5 = form.text_field :first_name, class: 'form-control'
+        td.col-md-1 Last Name
+        td.col-md-5 = form.text_field :last_name, class: 'form-control'
+      tr
+        td.col-md-1 Email
+        td.col-md-5 = form.text_field :email, class: 'form-control'
+        td.col-md-1 Phone
+        td.col-md-5 = form.text_field :phone, class: 'form-control'
+
+    => form.submit 'Save', class: 'btn btn-primary'
+    = link_to 'Cancel', customer_path(@customer), class: 'btn btn-default'
+
+= render partial: 'gifts', object: @customer.gifts, as: :gifts

@@ -1,0 +1,23 @@
+- if gifts.any?
+  h4.well.well-sm Gifts
+
+  table.table
+    thead
+      th.col-md-2 Date
+      th.col-md-2 Amount
+      th.col-md-6 Description
+      th.col-md-2 Action
+    tbody
+      - gifts.each do |gift|
+        td = gift.provided_at
+        td = gift.amount
+        td = gift.description
+        td
+          => link_to 'Edit',
+                     edit_customer_gift_path(@customer, gift),
+                     class: 'btn btn-default btn-xs'
+
+          = link_to 'Delete',
+                    customer_gift_path(@customer, gift),
+                    method: :delete,
+                    class: 'btn btn-danger btn-xs'
